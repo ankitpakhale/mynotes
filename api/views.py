@@ -71,3 +71,12 @@ def updateNote(request, pk):
 def deleteNote(request, pk):
     Note.objects.get(id=pk).delete()
     return Response("Note was deleted!!!")
+
+
+@api_view(["POST"])
+def postNote(request):
+    data = request.data
+    serializer = NoteSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
