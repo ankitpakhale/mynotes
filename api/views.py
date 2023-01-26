@@ -82,20 +82,25 @@ def getRoutes(request):
 @api_view(["GET", "POST"])
 def getNotes(request):
     if request.method == 'GET':
+        ''' This will run when page loads first time '''
         return getNotesList(request)
 
     if request.method == "POST":
+        ''' This will run when user clicks on plus button (This is create API) '''
         return createNote(request)
 
 @api_view(["GET", "PUT", "DELETE"])
 def getNote(request, pk):
     if request.method == 'GET':
+        ''' This will run when individual note(item) will get clicked '''
         return getNoteDetail(request, pk)
 
     if request.method == "PUT":
+        ''' This will run when user updates the note(item) '''
         return updateNote(request, pk)
         
     if request.method == "DELETE":
+        ''' This will run when user clicks on delete note(item) '''
         return deleteNote(request, pk)
     
     
